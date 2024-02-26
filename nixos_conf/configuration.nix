@@ -96,11 +96,15 @@
     # Defaults (must haves)
     vim
     wget
-
     firefox # Best browser
     kitty   # Best terminal
     neovim  # Best editor
+
+    # Misc.
     nerdfonts # dev fonts
+    (nerdfonts.override { fonts = [ "CodeNewRoman" "JetBrainsMono" ]; }) # Set dev fonts
+    jetbrains-mono
+    oh-my-posh # terminal yassifier
 
     ## Developer software
     git # it's git

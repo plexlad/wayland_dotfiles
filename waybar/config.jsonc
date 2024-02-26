@@ -1,0 +1,16 @@
+{
+	"layer": "top",
+	"modules-left": ["clock"],
+	"modules-center": ["hyprland/workspaces"],
+	"module-right": ["battery", "clock"],
+	"hyprland/workspaces": {
+		"mex-length": 50
+	},
+	"battery" {
+		"format": "{capacity}% {icon}",
+		"format-icons": ["1", "2", "3"]
+	},
+	"clock" {
+		"format-alt": "{:%a, %d. %b %H:%M}"
+	}
+}
