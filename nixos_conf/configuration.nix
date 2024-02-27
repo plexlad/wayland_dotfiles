@@ -99,21 +99,28 @@
     firefox # Best browser
     kitty   # Best terminal
     neovim  # Best editor
+    discord
+    teams-for-linux
 
     # Misc.
     nerdfonts # dev fonts
     (nerdfonts.override { fonts = [ "CodeNewRoman" "JetBrainsMono" ]; }) # Set dev fonts
     jetbrains-mono
+    fira-code
+    fira-code-symbols
+    fira-code-nerdfont
     oh-my-posh # terminal yassifier
 
     ## Developer software
     git # it's git
     vscodium # For school prjects
+    vscode # vscodium is having issues :(
     dotnet-sdk_8 
     rustup
     python3
     nodejs_21
     bun
+    electron_28
 
     ## Hyprland packages
     waybar # Can be configured with CSS
@@ -130,7 +137,61 @@
         mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
       })
     )
+
+    # Config
+    pipewire # Screensharing / Audio maintaining
+    wireplumber
+    xdg-desktop-portal
+    xdg-desktop-portal-hyprland
+    polkit
+    libsForQt5.polkit-kde-agent
+#    qt5-wayland
+#    qt6-wayland
+
+    # Theming packages (gruvbox for life, fight me)
+    gruvbox-gtk-theme
+    kde-gruvbox
+    bibata-cursors
   ];
+
+  # Polkit protocol options
+  security.polkit.enable = true;
+
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (
+        subject.isInGroup("users")
+	  && (
+	    action.id == "org.freedesktop.login1.reboot" ||
+	    action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+	    action.id == "org.freedesktop.login1.power-off" ||
+	    action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+	  )
+	)
+      {
+        return polkit.Result.YES;
+      }
+    })
+  '';
+
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+	ExecStart = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+	Restart = "on-failure";
+	RestartSec = 1;
+	TimeoutStopSec = 10;
+      };
+    };
+  };
+
+  # Allow unfree packages (vscode)
+  nixpkgs.config.allowUnfree = true;
 
   ## Hyprland Configuration ##
   programs.hyprland = {
@@ -143,7 +204,6 @@
     # If cursor becomes invisible
     #WLR_NO_HARDWARE_CURSORS = "1";
     # Hint electron apps to use Wayland
-    NIXOS_OZONE_WL = "1";
   };
 
   hardware = {
@@ -159,6 +219,18 @@
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
   
+  ## Theming (below uses GTK and QT to color everything to the needed degree
+  qt.enable = true; # QT (for KDE based packages) 
+  qt.platformTheme = "gtk2";
+#  qt.style.package = pkgs.kde-gruvbox;
+  qt.style = "gtk2";
+
+#  gtk = {
+#    enable = true; # GTK (for Gnome based packages)
+#    theme.package = pkgs.gruvbox-gtk-theme;
+#     TODO: Set cursor here
+#  }
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

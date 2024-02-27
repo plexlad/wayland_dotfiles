@@ -3,7 +3,7 @@
 # initializing
 swww init &
 # Setting wallpaper
-swww img ~/Downloads/comfypunk_wallpaper.gif &
+swww img ~/.config/wallpapers/anime/classroom.jpg &
 
 nm-applet --indicator &
 
