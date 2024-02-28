@@ -1,16 +1,31 @@
 {
 	"layer": "top",
-	"modules-left": ["clock"],
-	"modules-center": ["hyprland/workspaces"],
-	"module-right": ["battery"],
+	"modules-left": [ "hyprland/workspaces" ],
+	"modules-right": [ "tray", "clock", "battery" ],
 	"hyprland/workspaces": {
-		"max-length": 50
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
 	},
 	"battery": {
+        "bat": "BAT1",
+        "interval": 30,
+        "states": {
+            "warning": 35,
+            "critical": 15
+        },
 		"format": "{capacity}% {icon}",
-		"format-icons": ["1", "2", "3"]
+		"format-icons": ["󰁻", "󰁽", "󰁿", "󰂁", "󰁹"],
+        "max-length": 25
 	},
 	"clock": {
-		"format-alt": "{:%a, %d. %b %H:%M}"
-	}
+		"format": "{:%I:%M}",
+        "tooltip-format": "{:%Y-%m-%d}"
+	},
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
 }

@@ -96,31 +96,31 @@
   # $ nix search wget
   # 
   environment.systemPackages = with pkgs; [
-    # Defaults (must haves)
+    ## Defaults (must haves)
     vim
     wget
     firefox # Best browser
     kitty   # Best terminal
     neovim  # Best editor
-    discord
-    teams-for-linux
+    killall
 
-    # Utility
-    nerdfonts # dev fonts
-    (nerdfonts.override { fonts = [ "CodeNewRoman" "JetBrainsMono" ]; }) # Set dev fonts
-    jetbrains-mono
-    fira-code
-    fira-code-symbols
-    fira-code-nerdfont
+    ## Utility
     oh-my-posh # terminal yassifier
     nwg-look # gtk theming
     unzip
     xclip # Copy and paste
     wl-clipboard
-    libgcc
+    gcc
     lutgen # Nice wallpapers
 
-    ## Developer software
+    ## Fonts
+    nerdfonts # dev fonts
+    jetbrains-mono
+    fira-code
+    fira-code-symbols
+    fira-code-nerdfont
+
+    ## Developer software (comms too)
     git # it's git
     vscodium # For school prjects
     vscode # vscodium is having issues :(
@@ -131,6 +131,8 @@
     nodejs_21
     bun
     electron_28
+    discord
+    teams-for-linux
 
     ## Hyprland packages
     waybar # Can be configured with CSS
@@ -155,13 +157,23 @@
     xdg-desktop-portal-hyprland
     polkit
     libsForQt5.polkit-kde-agent
-#    qt5-wayland
-#    qt6-wayland
+    gtk4
+    gtk3
+    gtk2
 
     # Theming packages (gruvbox for life, fight me)
     gruvbox-gtk-theme
     kde-gruvbox
     bibata-cursors
+  ];
+
+  # Font configuration
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "CodeNewRoman" "JetBrainsMono" "FiraCode" ]; }) # Set dev fonts
+    jetbrains-mono
+    fira-code
+    fira-code-symbols
+    fira-code-nerdfont
   ];
 
   # Polkit protocol options
