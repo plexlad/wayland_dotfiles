@@ -42,6 +42,9 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Enable flakes and nix-command
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -102,7 +105,7 @@
     discord
     teams-for-linux
 
-    # Misc.
+    # Utility
     nerdfonts # dev fonts
     (nerdfonts.override { fonts = [ "CodeNewRoman" "JetBrainsMono" ]; }) # Set dev fonts
     jetbrains-mono
@@ -110,11 +113,18 @@
     fira-code-symbols
     fira-code-nerdfont
     oh-my-posh # terminal yassifier
+    nwg-look # gtk theming
+    unzip
+    xclip # Copy and paste
+    wl-clipboard
+    libgcc
+    lutgen # Nice wallpapers
 
     ## Developer software
     git # it's git
     vscodium # For school prjects
     vscode # vscodium is having issues :(
+    gh
     dotnet-sdk_8 
     rustup
     python3
