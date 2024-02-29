@@ -99,9 +99,12 @@
     ## Defaults (must haves)
     vim
     wget
-    firefox # Best browser
-    kitty   # Best terminal
-    neovim  # Best editor
+    firefox  # Best browser
+    kitty    # Best terminal
+    neovim   # Best editor
+    obsidian # Best note editor
+    libreoffice # Essentials for school work and basic logo/design
+    inkscape
     killall
 
     ## Utility
@@ -112,6 +115,10 @@
     wl-clipboard
     gcc
     lutgen # Nice wallpapers
+    obs-studio # Screen recording and utilities
+    obs-cli
+    signal-desktop
+    signal-cli
 
     ## Fonts
     nerdfonts # dev fonts
