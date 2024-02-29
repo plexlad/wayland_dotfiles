@@ -24,7 +24,8 @@ window#waybar {
 }
 
 .modules-right * {
-    margin-right: 6px;
+    margin-right: 3px;
+    margin-left: 3px;
 }
 
 #workspaces button {
@@ -37,5 +38,16 @@ window#waybar {
     background-color: #504945;
     border-radius: 5px;
     padding: 3px;
-    padding-right: 0;
+}
+
+#battery {
+    border-radius: 5px;
+}
+
+#battery.warning {
+    background-color: #fabd2f;
+}
+
+#battery.critical {
+    background-color: #fb4934;
 }
