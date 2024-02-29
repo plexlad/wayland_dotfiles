@@ -86,7 +86,7 @@
   users.users.toastielad = {
     isNormalUser = true;
     description = "toastielad";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -101,6 +101,7 @@
     wget
     firefox  # Best browser
     kitty    # Best terminal
+    home-manager # For config and dotfile storing
     neovim   # Best editor
     obsidian # Best note editor
     libreoffice # Essentials for school work and basic logo/design
@@ -137,7 +138,10 @@
     python3
     nodejs_21
     bun
-    electron_28
+    electron
+    # Build dependancy
+
+    # Social
     discord
     teams-for-linux
 
@@ -173,6 +177,9 @@
     kde-gruvbox
     bibata-cursors
   ];
+
+  # Allow insecure packages (I think it's a dependency)
+  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 
   # Font configuration
   fonts.packages = with pkgs; [
