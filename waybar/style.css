@@ -51,3 +51,20 @@ window#waybar {
 #battery.critical {
     background-color: #fb4934;
 }
+
+#network {
+    border-radius: 5px;
+    padding-left: 3px;
+}
+
+#network.disabled {
+    background-color: #cc241d;
+}
+
+#network.wifi {
+    background-color: #98971a;
+}
+
+#network.ethernet {
+    background-color: #689d6a;
+}

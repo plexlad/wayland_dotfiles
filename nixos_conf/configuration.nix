@@ -7,8 +7,6 @@
 {
   imports =
     [ 
-      # Add home-manager for system and dotfile management
-      <home-manager/nixos>
       # Include the results of the hardware scan.
       # Uses the hardware configuration in the root
       /etc/nixos/hardware-configuration.nix
@@ -91,20 +89,14 @@
     extraGroups = [ "wheel" "video" ];
   };
 
-  home-manager.users.toastielad = { pkgs, ... }: {
-    home.packages = with pkgs; [ atool httpie ];
-    programs.bash.enable = true;
-
-    home.stateVersion = "23.11";
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   # 
   environment.systemPackages = with pkgs; [
     ## Defaults (must haves)
-    home-manager
+    stow # Dotfile manager along with git
     vim
+    neovim
     wget # For installation and builds of internet packages
     curl # ^
     killall
@@ -156,6 +148,49 @@
 #    gruvbox-gtk-theme
 #    kde-gruvbox
 #    bibata-cursors
+
+    ## Editors
+    obsidian
+    vscodium
+
+    ## Customization
+    oh-my-posh
+    nwg-look
+    # Theming
+    gruvbox-gtk-theme
+    kde-gruvbox
+    bibata-cursors
+
+    ## Utility
+    # Artsy fartsy
+    inkscape
+    lutgen
+    # Recording
+    obs-studio
+    obs-cli
+    # Nice features
+    thefuck # Helps you get that command right with short syntax
+
+    ## Development
+    gcc
+    gh
+    dotnet-sdk_8
+    rustup
+    python3
+    bun
+    electron
+    
+    ## Comms
+    signal-desktop
+    signal-cli
+    discord
+    teams-for-linux
+    
+    # Fonts
+    (nerdfonts.override { fonts = ["CodeNewRoman" "JetBrainsMono" "FiraCode" ]; })
+    jetbrains-mono
+    fira-code
+    fira-code-symbols
   ];
 
   # Allow insecure packages (I think it's a dependency)
@@ -170,7 +205,7 @@
     fira-code-nerdfont
   ];
 
-  # Polkit protocol options
+  # Polkit p=otocol options
   security.polkit.enable = true;
 
   security.polkit.extraConfig = ''

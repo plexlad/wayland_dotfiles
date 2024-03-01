@@ -1,8 +1,10 @@
 {
 	"layer": "top",
 	"modules-left": [ "hyprland/workspaces" ],
-	"modules-right": [ "tray", "clock", "battery" ],
+    "modules-center": [ "privacy" ],
+	"modules-right": [ "tray", "network", "clock", "battery" ],
 	"hyprland/workspaces": {
+        "persistent-workspaces": { "*": 4 },
         "format": "{icon}",
         "format-icons": {
             "active": "",
@@ -28,5 +30,25 @@
     "tray": {
         "icon-size": 18,
         "spacing": 10
+    },
+    "network": {
+        "format": "{essid} {icon} ",
+        "format-icons": [ "󰤯", "󰤢", "󰤥", "󰤨" ],
+        "format-ethernet": "󰈀 {icon} ",
+        "format-disconnected": "󰤮 ",
+        "tooltip-format": "Wifi",
+        "tooltip-format-wifi": "{bandwidthUpBytes}b/s / {bandwidthDownBytes}b/s",
+        "tooltip-format-ethernet": "{bandwidthUpBytes}b/s / {bandwidthDownBytes}b/s",
+        "tooltip-format-disconnected": "Disconnected"
+    },
+    "privacy": {
+        "icon-spacing": 4,
+        "icon-size": 18,
+        "transition-duration": 250,
+        "modules": [
+            { "type": "screenshare" },
+            { "type": "audio-out" },
+            { "type": "audio-in" }
+        ]
     }
 }
