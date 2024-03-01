@@ -6,20 +6,21 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [ 
+      # Add home-manager for system and dotfile management
+      <home-manager/nixos>
+      # Include the results of the hardware scan.
+      # Uses the hardware configuration in the root
+      /etc/nixos/hardware-configuration.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixdeck"; # Define your hostname.
+  # Below cannot work with networkmanager
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -83,13 +84,18 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+
+  # Configuration for home user
   users.users.toastielad = {
     isNormalUser = true;
-    description = "toastielad";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+    extraGroups = [ "wheel" "video" ];
+  };
+
+  home-manager.users.toastielad = { pkgs, ... }: {
+    home.packages = with pkgs; [ atool httpie ];
+    programs.bash.enable = true;
+
+    home.stateVersion = "23.11";
   };
 
   # List packages installed in system profile. To search, run:
@@ -97,29 +103,19 @@
   # 
   environment.systemPackages = with pkgs; [
     ## Defaults (must haves)
+    home-manager
     vim
-    wget
-    firefox  # Best browser
-    kitty    # Best terminal
-    home-manager # For config and dotfile storing
-    neovim   # Best editor
-    obsidian # Best note editor
-    libreoffice # Essentials for school work and basic logo/design
-    inkscape
+    wget # For installation and builds of internet packages
+    curl # ^
     killall
-
-    ## Utility
-    oh-my-posh # terminal yassifier
-    nwg-look # gtk theming
     unzip
     xclip # Copy and paste
-    wl-clipboard
     gcc
-    lutgen # Nice wallpapers
-    obs-studio # Screen recording and utilities
-    obs-cli
-    signal-desktop
-    signal-cli
+    git
+    wl-clipboard
+    firefox  # Best browser
+    kitty    # Best terminal
+    libreoffice # Essentials for school work and basic logo/design
 
     ## Fonts
     nerdfonts # dev fonts
@@ -127,23 +123,6 @@
     fira-code
     fira-code-symbols
     fira-code-nerdfont
-
-    ## Developer software (comms too)
-    git # it's git
-    vscodium # For school prjects
-    vscode # vscodium is having issues :(
-    gh
-    dotnet-sdk_8 
-    rustup
-    python3
-    nodejs_21
-    bun
-    electron
-    # Build dependancy
-
-    # Social
-    discord
-    teams-for-linux
 
     ## Hyprland packages
     waybar # Can be configured with CSS
@@ -171,11 +150,12 @@
     gtk4
     gtk3
     gtk2
+    # ssh # TODO: enable SSH here
 
     # Theming packages (gruvbox for life, fight me)
-    gruvbox-gtk-theme
-    kde-gruvbox
-    bibata-cursors
+#    gruvbox-gtk-theme
+#    kde-gruvbox
+#    bibata-cursors
   ];
 
   # Allow insecure packages (I think it's a dependency)
@@ -226,7 +206,7 @@
     };
   };
 
-  # Allow unfree packages (vscode)
+  # Allow unfree packages (vscode, steam, etc.)
   nixpkgs.config.allowUnfree = true;
 
   ## Hyprland Configuration ##
@@ -252,11 +232,11 @@
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Editor default options
-  programs.neovim.enable = true;
-  programs.neovim.defaultEditor = true;
+#  programs.neovim.enable = true;
+#  programs.neovim.defaultEditor = true;
   
   ## Theming (below uses GTK and QT to color everything to the needed degree
-  qt.enable = true; # QT (for KDE based packages) 
+  qt.enable = true; # QT (for KDE based packages)
   qt.platformTheme = "gtk2";
 #  qt.style.package = pkgs.kde-gruvbox;
   qt.style = "gtk2";
@@ -278,7 +258,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
