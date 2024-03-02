@@ -63,7 +63,6 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -98,7 +97,7 @@
     vim
     neovim
     wget # For installation and builds of internet packages
-    curl # ^
+    curl 
     killall
     unzip
     xclip # Copy and paste
@@ -108,6 +107,9 @@
     firefox  # Best browser
     kitty    # Best terminal
     libreoffice # Essentials for school work and basic logo/design
+    vlc
+    xfce.thunar
+    xfce.thunar-volman
 
     ## Fonts
     nerdfonts # dev fonts
@@ -170,6 +172,7 @@
     obs-cli
     # Nice features
     thefuck # Helps you get that command right with short syntax
+    transmission # Torrent client
 
     ## Development
     gcc
@@ -203,6 +206,12 @@
     fira-code
     fira-code-symbols
     fira-code-nerdfont
+  ];
+
+  ## File Explorer (Thunar)
+  programs.xfconf.enable = true;
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-volman
   ];
 
   # Polkit p=otocol options
@@ -294,6 +303,17 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  ## Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  # Bluetooth configuration client
+  services.blueman.enable = true;
+  # Extra bluetooth codecs (using pipewire so disabled for now)
+#  hardware.pulseaudio = {
+#    enable = true;
+#    package = pkgs.pulseaudioFull;
+#  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

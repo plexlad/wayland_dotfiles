@@ -2,7 +2,7 @@
     border: none;
     border-radius: 0;
     font-family: "FiraCode Nerd Font", Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     min-height: 0;
 }
 
@@ -11,12 +11,20 @@ window#waybar {
 }
 
 .modules-left, .modules-right {
-    margin: 10px;
     background-color: #282828;
     color: #d5c4a1;
     padding: 4px 6px;
     border-radius: 30px;
     border: 3px solid #3c3836;
+}
+
+#workspaces button {
+    font-size: 14px;
+    color: #928374;
+}
+
+#workspaces button.active {
+    color: #d5c4a1;
 }
 
 .modules-right {
@@ -31,7 +39,6 @@ window#waybar {
 #workspaces button {
     border-radius: 30px;
     font-size: 16px;
-    color: #d5c4a1;
 }
 
 #tray {
@@ -57,7 +64,7 @@ window#waybar {
     padding-left: 3px;
 }
 
-#network.disabled {
+#network.disconnected {
     background-color: #cc241d;
 }
 

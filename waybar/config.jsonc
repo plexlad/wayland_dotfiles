@@ -3,7 +3,9 @@
 	"modules-left": [ "hyprland/workspaces" ],
     "modules-center": [ "privacy" ],
 	"modules-right": [ "tray", "network", "clock", "battery" ],
-	"hyprland/workspaces": {
+    "margin": "10px",
+    "margin-bottom": "0",
+    "hyprland/workspaces": {
         "persistent-workspaces": { "*": 4 },
         "format": "{icon}",
         "format-icons": {
@@ -37,8 +39,8 @@
         "format-ethernet": "󰈀 {icon} ",
         "format-disconnected": "󰤮 ",
         "tooltip-format": "Wifi",
-        "tooltip-format-wifi": "{bandwidthUpBytes}b/s / {bandwidthDownBytes}b/s",
-        "tooltip-format-ethernet": "{bandwidthUpBytes}b/s / {bandwidthDownBytes}b/s",
+        "tooltip-format-wifi": "{bandwidthUpBytes} / {bandwidthDownBytes}",
+        "tooltip-format-ethernet": "{bandwidthUpBytes} / {bandwidthDownBytes}",
         "tooltip-format-disconnected": "Disconnected"
     },
     "privacy": {
