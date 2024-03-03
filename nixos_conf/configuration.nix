@@ -47,7 +47,17 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  ## Options for GNOME, Hyprland used below
+  # Use SDDM as the dispaly manager
+  services.xserver.displayManager = {
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+
+    defaultSession = "hyprland";
+  };
+
+  ## Options for GNOME, Hyprland used below that
   # Enable the GNOME Desktop Environment.
   #services.xserver.displayManager.gdm.enable = true;
   #services.xserver.desktopManager.gnome.enable = true;
@@ -85,7 +95,7 @@
   # Configuration for home user
   users.users.toastielad = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" ];
+    extraGroups = [ "wheel" "video" "networkmanager" ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -111,6 +121,7 @@
     vlc
     xfce.thunar
     xfce.thunar-volman
+    libsForQt5.sddm # Display manager
 
     ## Fonts
     nerdfonts # dev fonts
@@ -149,8 +160,9 @@
 
     # Theming packages (gruvbox for life, fight me)
 #    gruvbox-gtk-theme
-#    kde-gruvbox
+    kde-gruvbox
 #    bibata-cursors
+
 
     ## Editors
     obsidian
@@ -184,7 +196,8 @@
     bun
     electron
 #    luajitPackages.luarocks # For Lua
-    luajitPackages.luarocks-nix
+    luajitPackages.luarocks
+    lazygit
     
     ## Comms
     signal-desktop

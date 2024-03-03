@@ -92,3 +92,9 @@ window#waybar {
 #taskbar button.active {
     font-weight: bold;
 }
+
+tooltip {
+    border-radius: 5px;
+    background-color: #282828;
+    color: #d5c4a1;
+}
