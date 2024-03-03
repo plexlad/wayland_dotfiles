@@ -5,6 +5,8 @@ echo "Requires GNU Stow"
 echo "Starting..."
 echo "stow bash"
 stow bash
+echo "sudo rm -f /etc/nixos/configuration.nix"
+sudo rm -f /etc/nixos/configuration.nix
 echo "sudo stow --target=/etc/nixos/ nixos_conf"
 sudo stow --target=/etc/nixos/ nixos_conf/
 echo "Completed."
