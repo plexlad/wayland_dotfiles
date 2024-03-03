@@ -104,6 +104,7 @@
     gcc
     git
     wl-clipboard
+    brightnessctl
     firefox  # Best browser
     kitty    # Best terminal
     libreoffice # Essentials for school work and basic logo/design
