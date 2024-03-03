@@ -26,6 +26,8 @@ require('mason-lspconfig').setup({
 
 lsp.setup()
 
+
+
 -- CMP --
 cmp.setup({
 	preselect = 'item',

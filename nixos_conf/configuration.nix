@@ -183,6 +183,8 @@
     python3
     bun
     electron
+#    luajitPackages.luarocks # For Lua
+    luajitPackages.luarocks-nix
     
     ## Comms
     signal-desktop
