@@ -1,7 +1,6 @@
 {
 	"layer": "top",
 	"modules-left": [ "hyprland/workspaces" ],
-    "modules-center": [ "wlr/taskbar" ],
 	"modules-right": [ "tray", "network", "bluetooth", "clock", "battery" ],
     "margin": "10px",
     "margin-bottom": "0",
@@ -59,11 +58,5 @@
         "tooltip-format": "Bluetooth off",
         "tooltip-format-connected": "{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}"
-    },
-    "wlr/taskbar": {
-        "format": "{icon} {name}",
-        "icon-size": 16,
-        "tooltip-format": "{title}",
-        "on-click": "activate"
     }
 }

@@ -10,7 +10,7 @@ window#waybar {
     background: rgba(0, 0, 0, 0);
 }
 
-.modules-left, .modules-center, .modules-right {
+.modules-left, .modules-right {
     background-color: #282828;
     color: #d5c4a1;
     padding: 4px 6px;
@@ -75,18 +75,6 @@ window#waybar {
 
 #network.ethernet {
     background-color: #689d6a;
-}
-
-#taskbar * * {
-    color: #d5c4a1;
-}
-
-#taskbar * *:hover {
-    background-color: #3c3836;
-}
-
-#taskbar.empty {
-    opacity: 0;
 }
 
 #taskbar button.active {
