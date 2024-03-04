@@ -2,14 +2,33 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, ... }: 
+let
+    # Use SDDM theme for the... SDDM theme
+    sddm-theme = pkgs.stdenv.mkDerivation {
+        name = "gruvbox-sddm-theme";
+        src = pkgs.fetchFromGitHub {
+            owner = "scientiac";
+            repo = "gruvbox-minimal-sddm";
+            rev = "af0e63389031619edbe93d71f44a5ece50edc1a2";
+            hash = "sha256-CKfACg5nT8Ip9Y7kr5Wi3SJOTdQZ4U+ISeGP9HmlTAY=";
+        };
 
+        installPhase = ''
+            mkdir -p $out
+            cp -R ./* $out/
+        '';
+    };
+in
 {
   imports =
     [ 
       # Include the results of the hardware scan.
       # Uses the hardware configuration in the root
       /etc/nixos/hardware-configuration.nix
+      ./system_packages.nix # Packages to install
+      ./fonts.nix # Fonts
+      ./window_manager.nix # Currently set as Hyprland WM
     ];
 
   # Bootloader.
@@ -44,17 +63,19 @@
   # Enable flakes and nix-command
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # Use SDDM as the dispaly manager
-  services.xserver.displayManager = {
-    sddm = {
-      enable = true;
-      wayland.enable = true;
+  services.xserver = {
+    enable = true;
+    layout = "us";
+    xkbVariant = "";
+    displayManager = {
+      defaultSession = "hyprland";
+      sddm = {
+        enable = true;
+        theme = "${ sddm-theme }";
+        wayland.enable = true;
+      };
     };
-
-    defaultSession = "hyprland";
   };
 
   ## Options for GNOME, Hyprland used below that
@@ -62,30 +83,30 @@
   #services.xserver.displayManager.gdm.enable = true;
   #services.xserver.desktopManager.gnome.enable = true;
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+#  # Enable sound with pipewire.
+#  sound.enable = true;
+#  security.rtkit.enable = true;
+#  services.pipewire = {
+#    enable = true;
+#    alsa.enable = true;
+#    alsa.support32Bit = true;
+#    pulse.enable = true;
+#    # If you want to use JACK applications, uncomment this
+#    #jack.enable = true;
+#
+#    # use the example session manager (no others are packaged yet so this is enabled by default,
+#    # no need to redefine it in your config for now)
+#    #media-session.enable = true;
+#  };
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
+hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
+};
+nixpkgs.config.pulseaudio = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -95,142 +116,12 @@
   # Configuration for home user
   users.users.toastielad = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "networkmanager" ];
+    extraGroups = [ "wheel" "video" "networkmanager" "audio" ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  # 
-  environment.systemPackages = with pkgs; [
-    ## Defaults (must haves)
-    stow # Dotfile manager along with git
-    vim
-    neovim
-    wget # For installation and builds of internet packages
-    curl 
-    killall
-    unzip
-    xclip # Copy and paste
-    gcc
-    git
-    wl-clipboard
-    brightnessctl
-    firefox  # Best browser
-    kitty    # Best terminal
-    libreoffice # Essentials for school work and basic logo/design
-    vlc
-    xfce.thunar
-    xfce.thunar-volman
-    libsForQt5.sddm # Display manager
-
-    ## Fonts
-    nerdfonts # dev fonts
-    jetbrains-mono
-    fira-code
-    fira-code-symbols
-    fira-code-nerdfont
-
-    ## Hyprland packages
-    waybar # Can be configured with CSS
-    eww # More extensible, but uses own markup language
-    dunst # Notification Daemon
-    libnotify # Sends notifications to daemon
-    swww # Wallpaper
-    alacritty # Just in case kitty has issues with wayland
-    rofi-wayland # App launcher
-    networkmanagerapplet # Adds a GUI to set wifi
-
-    # Display workspaces properly
-    (pkgs.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      })
-    )
-
-    # Config
-    pipewire # Screensharing / Audio maintaining
-    wireplumber
-    xdg-desktop-portal
-    xdg-desktop-portal-hyprland
-    polkit
-    libsForQt5.polkit-kde-agent
-    gtk4
-    gtk3
-    gtk2
-    # ssh # TODO: enable SSH here
-
-    # Theming packages (gruvbox for life, fight me)
-#    gruvbox-gtk-theme
-    kde-gruvbox
-#    bibata-cursors
-
-
-    ## Editors
-    obsidian
-    vscodium
-
-    ## Customization
-    oh-my-posh
-    nwg-look
-    # Theming
-    gruvbox-gtk-theme
-    kde-gruvbox
-    bibata-cursors
-
-    ## Utility
-    # Artsy fartsy
-    inkscape
-    lutgen
-    # Recording
-    obs-studio
-    obs-cli
-    # Nice features
-    thefuck # Helps you get that command right with short syntax
-    transmission # Torrent client
-
-    ## Development
-    gcc
-    gh
-    dotnet-sdk_8
-    rustup
-    python3
-    bun
-    electron
-#    luajitPackages.luarocks # For Lua
-    luajitPackages.luarocks
-    lazygit
-    
-    ## Comms
-    signal-desktop
-    signal-cli
-    discord
-    teams-for-linux
-    
-    # Fonts
-    (nerdfonts.override { fonts = ["CodeNewRoman" "JetBrainsMono" "FiraCode" ]; })
-    jetbrains-mono
-    fira-code
-    fira-code-symbols
-  ];
-
   # Allow insecure packages (I think it's a dependency)
-  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 
-  # Font configuration
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "CodeNewRoman" "JetBrainsMono" "FiraCode" ]; }) # Set dev fonts
-    jetbrains-mono
-    fira-code
-    fira-code-symbols
-    fira-code-nerdfont
-  ];
-
-  ## File Explorer (Thunar)
-  programs.xfconf.enable = true;
-  programs.thunar.plugins = with pkgs.xfce; [
-    thunar-volman
-  ];
-
-  # Polkit p=otocol options
+  # Polkit protocol options
   security.polkit.enable = true;
 
   security.polkit.extraConfig = ''
@@ -264,16 +155,6 @@
 	TimeoutStopSec = 10;
       };
     };
-  };
-
-  # Allow unfree packages (vscode, steam, etc.)
-  nixpkgs.config.allowUnfree = true;
-
-  ## Hyprland Configuration ##
-  programs.hyprland = {
-    enable = true;
-    #nvidiaPatches = true # If using nvidia based GPU
-    xwayland.enable = true;
   };
 
   environment.sessionVariables = {
@@ -325,11 +206,6 @@
   hardware.bluetooth.powerOnBoot = true;
   # Bluetooth configuration client
   services.blueman.enable = true;
-  # Extra bluetooth codecs (using pipewire so disabled for now)
-#  hardware.pulseaudio = {
-#    enable = true;
-#    package = pkgs.pulseaudioFull;
-#  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -337,12 +213,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

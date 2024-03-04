@@ -4,3 +4,4 @@ alias edit_nixos_config='sudo nvim /etc/nixos/configuration.nix'
 alias refresh_wallpaper='swww img ~/.config/wallpapers/pixelart/dock.jpg'
 
 eval "$(thefuck --alias)"
+eval "$(oh-my-posh -c ~/.config/oh-my-posh/theme.json init bash)"
