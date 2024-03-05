@@ -12,7 +12,7 @@ Configurations include:
 - Waybar
 - Other goodies
 
-All of these files are able to stay installed in the same directory with the power of symlinks (with helpl from GNU Stow) as well as the NixOS rebuilding process.
+All of these files are able to stay installed in the same directory with the power of symlinks (with help from GNU Stow) as well as the NixOS rebuilding process.
 For more information, look at the respective programs documentation. 
 
 `dot_init.sh` is a script to automatically start linking the necessary resources with stow. Directions below.
