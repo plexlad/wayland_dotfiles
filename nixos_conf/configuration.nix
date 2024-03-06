@@ -208,11 +208,8 @@ nixpkgs.config.pulseaudio = true;
   # Bluetooth configuration client
   services.blueman.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  # Tailscale VPN (to connect to other servers and learn tools)
+  services.tailscale.enable = true;
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
