@@ -29,6 +29,7 @@ in
       ./system_packages.nix # Packages to install
       ./fonts.nix # Fonts
       ./window_manager.nix # Currently set as Hyprland WM
+      ./virtual_machine.nix # Set up for VirtualBox
     ];
 
   # Bootloader.

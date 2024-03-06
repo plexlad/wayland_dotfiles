@@ -1,7 +1,18 @@
 { pkgs, ... }: {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  # 
+  
+  # Use Firefox Nightly instead of the default Firefox
+  nixpkgs.overlays =
+    let
+      moz-rev = "master";
+      moz-url = builtins.fetchTarball { url = "https://github.com/mozilla/nixpkgs-mozilla/archive/${moz-rev}.tar.gz";};
+      nightlyOverlay = (import "${moz-url}/firefox-overlay.nix");
+    in [
+      nightlyOverlay
+    ];
+  programs.firefox.package = pkgs.latest.firefox-nightly-bin;
+
   environment.systemPackages = with pkgs; [
     ## Defaults (must haves)
     stow # Dotfile manager along with git
@@ -89,7 +100,8 @@
     # Nice features
     thefuck # Helps you get that command right with short syntax
     transmission # Torrent client
-    spotify-tui
+    spotify-tui # Make sure to oconfigure with the Spotify dev API!
+    virtualbox
 
     ## Development
     gcc
