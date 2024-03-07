@@ -114,6 +114,7 @@
 #    luajitPackages.luarocks # For Lua
     luajitPackages.luarocks
     lazygit
+    flyctl
     
     ## Comms
     signal-desktop
