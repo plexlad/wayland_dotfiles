@@ -104,17 +104,19 @@
     virtualbox
 
     ## Development
+    # Programming language features
     gcc
-    gh
     dotnet-sdk_8
     rustup
     python3
+    go
     bun
     electron
-#    luajitPackages.luarocks # For Lua
     luajitPackages.luarocks
+    # Cool dev tools
     lazygit
     flyctl
+    zola # A static site generator
     
     ## Comms
     signal-desktop
