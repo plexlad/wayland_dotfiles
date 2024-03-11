@@ -102,6 +102,9 @@
     transmission # Torrent client
     spotify-tui # Make sure to oconfigure with the Spotify dev API!
     virtualbox
+    # Proton Apps
+    protonvpn-cli
+    protonmail-bridge
 
     ## Development
     # Programming language features
@@ -111,6 +114,7 @@
     python3
     go
     bun
+    nodejs_21
     electron
     luajitPackages.luarocks
     # Cool dev tools
