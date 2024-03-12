@@ -106,7 +106,7 @@
     protonvpn-cli
     protonmail-bridge
 
-    ## Development
+    ## Development (Developer tools)
     # Programming language features
     gcc
     dotnet-sdk_8
@@ -119,6 +119,7 @@
     luajitPackages.luarocks
     # Cool dev tools
     lazygit
+    gh # Github CLI becuase keys can be annoying sometimes
     flyctl
     zola # A static site generator
     
