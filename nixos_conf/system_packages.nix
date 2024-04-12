@@ -80,6 +80,7 @@
     ## Editors
     obsidian
     vscodium
+    vscode # For school
 
     ## Customization
     oh-my-posh
@@ -105,6 +106,10 @@
     # Proton Apps
     protonvpn-cli
     protonmail-bridge
+    # Internet tools
+    inetutils # Telnet contained
+    spotify
+    flameshot
 
     ## Development (Developer tools)
     # Programming language features
