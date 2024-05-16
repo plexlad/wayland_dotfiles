@@ -56,17 +56,7 @@ return {
       }
     end
   },
-	{
-		'stevearc/aerial.nvim',
-		opts = {},
-		-- Optional dependencies
-		dependencies = {
-			 "nvim-treesitter/nvim-treesitter",
-			 "nvim-tree/nvim-web-devicons",
-		},
-	},
-	{ "mbbill/undotree"},
-  { "tpope/vim-fugitive"},
+  { "tpope/vim-fugitive", lazy = true },
   { "michaelb/do-nothing.vim", lazy = true },
   { "folke/trouble.nvim" },
   { "m4xshen/autoclose.nvim" },
@@ -88,8 +78,10 @@ return {
 	{	"hrsh7th/cmp-nvim-lsp" },
 	{	"hrsh7th/cmp-nvim-lua" },
 	{	"L3MON4D3/LuaSnip" },
-	{ "williamboman/mason.nvim", lazy = true },
-	{ "williamboman/mason-lspconfig.nvim", lazy = true },
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim" },
+
+    { "jlcrochet/vim-razor" },
 
 	-- Terminal
 	{ "akinsho/toggleterm.nvim", version = "*", config = true },

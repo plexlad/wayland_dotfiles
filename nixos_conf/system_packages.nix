@@ -50,6 +50,7 @@
     alacritty # Just in case kitty has issues with wayland
     rofi-wayland # App launcher
     networkmanagerapplet # Adds a GUI to set wifi
+    hyprpaper # Set wallpaper with hyprland support
 
     # Display workspaces properly
     (pkgs.waybar.overrideAttrs (oldAttrs: {
@@ -80,7 +81,6 @@
     ## Editors
     obsidian
     vscodium
-    vscode # For school
 
     ## Customization
     oh-my-posh
@@ -110,6 +110,10 @@
     inetutils # Telnet contained
     spotify
     flameshot
+    marp-cli # Presentations in markdown
+    # Writing
+    xournal
+    xournalpp
 
     ## Development (Developer tools)
     # Programming language features
@@ -120,6 +124,7 @@
     go
     bun
     nodejs_21
+    nodePackages.postcss
     electron
     luajitPackages.luarocks
     # Cool dev tools
@@ -127,6 +132,9 @@
     gh # Github CLI becuase keys can be annoying sometimes
     flyctl
     zola # A static site generator
+    chromium
+    tailwindcss
+    rust-analyzer
     
     ## Comms
     signal-desktop

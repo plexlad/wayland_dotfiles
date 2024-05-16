@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
+hyprpaper &
 
-# initializing
-swww init &
-# Setting wallpaper
-swww img ~/.config/wallpapers/anime/classroom.jpg &
-
+# Network Manager
 nm-applet --indicator &
 
 # bar
