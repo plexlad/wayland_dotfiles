@@ -137,6 +137,12 @@
     lua-language-server
     rust-analyzer
     luajitPackages.luarocks
+    luajitPackages.jsregexp
+    php83Packages.composer
+    zulu
+    julia_18
+    python311Packages.pip
+    php
     # Cool dev tools
     lazygit
     gh # Github CLI becuase keys can be annoying sometimes
