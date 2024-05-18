@@ -126,6 +126,8 @@
     # Programming language features
     gcc
     dotnet-sdk_8
+    netcoredbg # Debugging for dotnet
+    omnisharp-roslyn # More debugging
     rustup
     python3
     go
