@@ -129,11 +129,13 @@
     rustup
     python3
     go
+    delve
     bun
     nodejs_21
     nodePackages.postcss
     electron
     lua
+    stylua
     lua-language-server
     rust-analyzer
     luajitPackages.luarocks

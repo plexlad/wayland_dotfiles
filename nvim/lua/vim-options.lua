@@ -2,6 +2,9 @@
 local global = vim.g
 local option = vim.o
 
+global.mapleader = " "
+global.localmapleader = " "
+
 option.backup = false
 option.clipboard = "unnamedplus"
 option.number = true
@@ -21,5 +24,6 @@ option.termguicolors = true
 option.undofile = true
 option.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
+option.signcolumn = "yes"
 option.scrolloff = 8
 option.sidescrolloff = 8

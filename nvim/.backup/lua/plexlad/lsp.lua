@@ -10,7 +10,7 @@ lsp.set_sign_icons({
 	error = '✘',
   warn = '▲',
   hint = '⚑',
-  info = '»'
+  info = ''
 })
 
 lsp.on_attach(function( _, bufnr )

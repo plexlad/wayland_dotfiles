@@ -10,7 +10,7 @@ return {
       cmp.setup({
         snippet = {
           expand = function(args)
-            luasnip.expand(args.body)
+            luasnip.lsp_expand(args.body)
           end,
         },
         window = {
@@ -24,7 +24,7 @@ return {
             if luasnip.expandable() then
                 luasnip.expand()
             else
-                cmp.confirm({ select = true })
+                cmp.confirm({ select = false })
             end
             else
                 fallback()
@@ -54,7 +54,7 @@ return {
           ["<C-e"] = cmp.mapping.abort(),
         }),
         sources = cmp.config.sources({
-          --{ name = "nvim_lsp" }
+          { name = "nvim_lsp" },
           { name = "luasnip" },
         }, {
           { name = "buffer" },
@@ -62,7 +62,6 @@ return {
       })
 
       -- Used for custom lsp configuration
---      local capabilities = require('cmp_nvim_lsp').default_capabilities()
 --      -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 --      require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
 --        capabilities = capabilities

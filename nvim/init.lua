@@ -1,4 +1,5 @@
-require("vim-options") -- Loads default keybindings. Plugins use lazy file.
+require("vim-options") --  Loads vim options. Plugins use lazy file.
+require("keymaps") -- Loads default keymaps.Plugins use lazy file.
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
