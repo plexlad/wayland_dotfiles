@@ -13,11 +13,18 @@
     ];
   programs.firefox.package = pkgs.latest.firefox-nightly-bin;
 
+  # Neovim as text editor
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
   environment.systemPackages = with pkgs; [
     ## Defaults (must haves)
     stow # Dotfile manager along with git
     vim
-    neovim
+    ripgrep # This and others are used with neovim plugins
+    fd # Alternative to find
     wget # For installation and builds of internet packages
     curl 
     killall
@@ -126,6 +133,9 @@
     nodejs_21
     nodePackages.postcss
     electron
+    lua
+    lua-language-server
+    rust-analyzer
     luajitPackages.luarocks
     # Cool dev tools
     lazygit
