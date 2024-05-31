@@ -121,6 +121,7 @@
     # Writing
     xournal
     xournalpp
+    zotero # Note taking research app
 
     ## Development (Developer tools)
     # Programming language features

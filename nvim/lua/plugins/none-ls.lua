@@ -6,7 +6,8 @@ return {
     null_ls.setup({
       sources = {
         -- Adjust this for formatting
-        null_ls.builtins.formatting.stylua
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.gofmt,
       }
     })
 
