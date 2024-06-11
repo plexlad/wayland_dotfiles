@@ -23,6 +23,7 @@
     ## Defaults (must haves)
     stow # Dotfile manager along with git
     vim
+    bashmount # Mount USB drives
     ripgrep # This and others are used with neovim plugins
     fd # Alternative to find
     wget # For installation and builds of internet packages
@@ -122,6 +123,7 @@
     xournal
     xournalpp
     zotero # Note taking research app
+    cura # 3D printing slicer
 
     ## Development (Developer tools)
     # Programming language features
