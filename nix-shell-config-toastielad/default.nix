@@ -9,7 +9,7 @@ in
     buildInputs = with pkgs; [
       clang
       # Replace llvmPackages with llvmPackages_X, where X is the latest LLVM version (at the time of writing, 16)
-      llvmPackages_18.bintools
+      llvmPackages_17.bintools
       rustup
     ];
     RUSTC_VERSION = overrides.toolchain.channel;

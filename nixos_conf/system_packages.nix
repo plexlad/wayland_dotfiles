@@ -102,6 +102,7 @@
     ## Utility
     # Artsy fartsy
     inkscape
+    blockbench-electron
     lutgen
     # Recording
     obs-studio
@@ -134,6 +135,7 @@
     rustup
     python3
     go
+    air # Auto restart for go
     delve
     bun
     nodejs_21
@@ -164,6 +166,10 @@
     signal-cli
     discord
     teams-for-linux
+
+    # Games
+    steam
+    ferium
     
     # Fonts
     (nerdfonts.override { fonts = ["CodeNewRoman" "JetBrainsMono" "FiraCode" "FantasqueSansMono" ]; })
