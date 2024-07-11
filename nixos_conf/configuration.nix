@@ -65,16 +65,20 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Use SDDM as the dispaly manager
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    xkbVariant = "";
+  services = {
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+    };
     displayManager = {
       defaultSession = "hyprland";
-      sddm = {
+      sddm = { 
+        wayland.enable = true;
         enable = true;
         theme = "${ sddm-theme }";
-        wayland.enable = true;
       };
     };
   };

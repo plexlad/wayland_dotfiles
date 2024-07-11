@@ -102,7 +102,7 @@
     ## Utility
     # Artsy fartsy
     inkscape
-    blockbench-electron
+    blockbench
     lutgen
     # Recording
     obs-studio
@@ -110,7 +110,6 @@
     # Nice features
     thefuck # Helps you get that command right with short syntax
     transmission # Torrent client
-    spotify-tui # Make sure to oconfigure with the Spotify dev API!
     virtualbox
     # Proton Apps
     protonvpn-cli
@@ -138,7 +137,7 @@
     air # Auto restart for go
     delve
     bun
-    nodejs_21
+    nodejs_22
     nodePackages.postcss
     electron
     lua
@@ -148,8 +147,9 @@
     luajitPackages.luarocks
     luajitPackages.jsregexp
     php83Packages.composer
+    mysql84
     zulu
-    julia_18
+    julia_19
     python311Packages.pip
     php
     # Cool dev tools

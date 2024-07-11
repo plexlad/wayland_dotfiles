@@ -15,3 +15,6 @@ km("n", "<C-l>", "<C-w>l", opts)
 -- Window Split
 km("n", "<leader>wv", ":vertical split<CR>", opts)
 km("n", "<leader>wh", ":split<CR>", opts)
+
+-- Exit terminal mode
+km("t", "<Esc>", "<C-\\><C-n>", opts)
