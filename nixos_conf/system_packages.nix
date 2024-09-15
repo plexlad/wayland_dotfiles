@@ -3,6 +3,7 @@
   # $ nix search wget
   
   # Use Firefox Nightly instead of the default Firefox
+  nixpkgs.config.allowBroken = true;
   nixpkgs.overlays =
     let
       moz-rev = "master";
@@ -23,7 +24,6 @@
     ## Defaults (must haves)
     stow # Dotfile manager along with git
     vim
-    bashmount # Mount USB drives
     ripgrep # This and others are used with neovim plugins
     fd # Alternative to find
     wget # For installation and builds of internet packages
@@ -31,8 +31,6 @@
     killall
     unzip
     xclip # Copy and paste
-    gcc
-    git
     wl-clipboard
     brightnessctl
     firefox  # Best browser
@@ -102,15 +100,13 @@
     ## Utility
     # Artsy fartsy
     inkscape
+    gimp
     blockbench
     lutgen
     # Recording
     obs-studio
     obs-cli
     # Nice features
-    thefuck # Helps you get that command right with short syntax
-    transmission # Torrent client
-    virtualbox
     # Proton Apps
     protonvpn-cli
     protonmail-bridge
@@ -120,14 +116,13 @@
     flameshot
     marp-cli # Presentations in markdown
     # Writing
-    xournal
-    xournalpp
     zotero # Note taking research app
     cura # 3D printing slicer
 
     ## Development (Developer tools)
     # Programming language features
     gcc
+    git
     dotnet-sdk_8
     netcoredbg # Debugging for dotnet
     omnisharp-roslyn # More debugging
@@ -138,7 +133,10 @@
     delve
     bun
     nodejs_22
-    nodePackages.postcss
+    typescript
+    nodePackages_latest.typescript-language-server
+    vscode-langservers-extracted
+    tailwindcss
     electron
     lua
     stylua
@@ -160,6 +158,9 @@
     chromium
     tailwindcss
     rust-analyzer
+    rustc # Rust compiling
+    cargo
+    qtspim # MIPS Simulator (for assembly)
     
     ## Comms
     signal-desktop
@@ -170,12 +171,35 @@
     # Games
     steam
     ferium
+    lutris
     
     # Fonts
     (nerdfonts.override { fonts = ["CodeNewRoman" "JetBrainsMono" "FiraCode" "FantasqueSansMono" ]; })
     jetbrains-mono
     fira-code
     fira-code-symbols
+
+    # Custom packages (my own tests and such)
+    (rustPlatform.buildRustPackage rec {
+      pname = "babygrep";
+      version = "0.1.0";
+
+      src = fetchFromGitHub {
+        owner = "plexlad";
+        repo = "babygrep";
+        rev = "147da59c9273743829f78077e3cda85dc9e1e75d";
+        hash = "sha256-f0y//ai9rgRwQlxzFXD9sp8gWq98BtphM/k9/ZKO0EY=";
+      };
+
+      cargoHash = "sha256-YhbjRvjePQnlRVLP4ajP2hT5VeeLki+gX2NYjrGWfXI=";
+
+      meta = with lib; {
+        description = "Very simple grep from a file using Rust book example";
+        homepage = "https://github.com/plexlad/babygrep";
+        license = licenses.unlicense;
+        maintainers = [];
+      };
+    })
   ];
 
   ## File Explorer (Thunar)

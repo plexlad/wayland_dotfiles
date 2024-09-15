@@ -25,7 +25,12 @@ return {
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
-			local omnisharp_bin = "/nix/store/xym7s9vvg8ldwcj9d0yv52a13lyz8rqx-system-path/bin/OmniSharp"
+      local servers = { "tailwindcss", "tsserver" }
+      for _, lsp in pairs(servers) do
+        lspconfig[lsp].setup {
+          capabilities = capabilities,
+        }
+      end
 
 			-- Add config setups here
 			lspconfig.lua_ls.setup(capabilities)
