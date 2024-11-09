@@ -15,7 +15,7 @@ option.tabstop = 2
 option.softtabstop = 2
 option.shiftwidth = 2
 
-option.hlseach = false
+option.hlsearch = false
 option.ignorecase = true
 
 option.swapfile = false
